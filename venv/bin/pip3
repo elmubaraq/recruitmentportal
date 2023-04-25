@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/ficx/Desktop/Web Design/recruitmentPotal/venv/bin/python3" "$0" "$@"
+'''exec' "/home/ficx/Desktop/Web Design/recruitmentportal/venv/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
