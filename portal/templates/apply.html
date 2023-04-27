@@ -1,0 +1,136 @@
+{% extends 'base.html'%}
+{% block title %}
+    Apply
+{% endblock%}
+
+
+
+        
+
+{% block body %}
+
+    <div class="container">
+        <form class="row g-3 needs-validation" novalidate>
+            <h3>Bio-data</h3>
+            {{ form.hidden_tag() }}
+            <div class="col-md-4 position-relative">
+                {{form.first_name.label()}}
+                {{form.first_name(class="form-control", placeholder="First Name")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.middle_name.label()}}
+                {{form.middle_name(class="form-control", placeholder="Middle Name")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.last_name.label()}}
+                {{form.last_name(class="form-control", placeholder="Last Name")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.gender.label()}}
+                {{form.gender(class="form-select", placeholder="Town of Birth")}}
+            </div>
+            <div class="col-md-3 position-relative"> 
+                {{form.state_of_origin.label()}}
+                {{form.state_of_origin(class="form-select", placeholder="State of Origin")}}
+            </div>
+            <div class="col-md-6 position-relative">
+                {{form.permanent_address.label()}}
+                {{form.permanent_address(class="form-control", placeholder="Permanent Address")}}
+            </div>
+            <div class="col-md-2 position-relative">
+                {{form.home_town.label()}}
+                {{form.home_town(class="form-control", placeholder="Town of Birth")}}
+            </div>
+            <div class="col-md-2 position-relative"> 
+                {{form.state_of_residence.label()}}
+                {{form.state_of_residence(class="form-select", placeholder="Current State")}}
+            </div>
+            <div class="col-md-5 position-relative">
+                {{form.residential_address.label()}}
+                {{form.residential_address(class="form-control", placeholder="Your Current Address")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.town_of_residence.label()}}
+                {{form.town_of_residence(class="form-control", placeholder="Town you Reside in")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.lga.label()}}
+                {{form.lga(class="form-control", placeholder="Local Govt Area")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.nin.label()}}
+                {{form.nin(class="form-control", placeholder="National Identity Number")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.phone.label()}}
+                {{form.phone(class="form-control", placeholder="Phone Number")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.passport_photo.label()}}
+                {{form.passport_photo(class="form-control")}}
+            </div>
+            <h3>Academic Qualification</h3>
+            <div class="col-md-3 position-relative">
+                {{form.primary_school.label()}}
+                {{form.primary_school(class="form-control", placeholder="Primary School Attended")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.secondary_school.label()}}
+                {{form.secondary_school(class="form-control", placeholder="Secondary School Attended")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.tertiary_school.label()}}
+                {{form.tertiary_school(class="form-control", placeholder="Secondary Institution Attended")}}
+            </div>
+            <div class="col-md-3 position-relative">
+                {{form.highest_qualification.label()}}
+                {{form.highest_qualification(class="form-select", placeholder="Town of Birth")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.school_cert_photo.label()}}
+                {{form.school_cert_photo(class="form-control")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.ssce_photo.label()}}
+                {{form.ssce_photo(class="form-control", placeholder="Secondary School Attended")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.tertiary_cert.label()}}
+                {{form.tertiary_cert(class="form-control", placeholder="tertiary Institution Attended")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.nysc_cert.label()}}
+                {{form.nysc_cert(class="form-control", placeholder="Secondary School Attended")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.professional_cert.label()}}
+                {{form.professional_cert(class="form-control", placeholder="Other certifcate")}}
+            </div>
+            <div class="col-md-4 position-relative">
+                {{form.other_cert.label()}}
+                {{form.other_cert(class="form-control", placeholder="Other certifcate")}}
+            </div>
+            <h3>Position Applying for</h3>
+            <div class="col-md-3 position-relative">
+                {{form.position_applying_for.label()}}
+                {{form.position_applying_for(class="form-select", placeholder="Town of Birth")}}
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+                  <label class="form-check-label" for="invalidCheck3">
+                    Agree to terms and conditions
+                  </label>
+                  <div id="invalidCheck3Feedback" class="invalid-feedback">
+                    You must agree before submitting.
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+            {{form.submit(class="btn btn-lg btn-block btn-primary")}}
+            </div>
+        </form>
+    </div>    
+{%  endblock %}

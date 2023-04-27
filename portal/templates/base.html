@@ -45,7 +45,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Apply</a>
+                    <a class="nav-link active" aria-current="page" href="{{url_for('apply_page')}}">Apply</a>
                 </li>
                 
             </div>
@@ -62,7 +62,7 @@
                 <span aria-hidden="true">&times;</span>
             </button> 
             {{ message }}  
-        </div>
+          </div>
           {% endfor %}
         {% endif %}
       {% endwith %}
