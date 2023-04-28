@@ -14,6 +14,11 @@ class RegistrationForm(FlaskForm):
     password1 = PasswordField(label='Password', validators=[Length(min=8),DataRequired()])
     password2 = PasswordField(label='Verify password', validators=[EqualTo('password1'),DataRequired()])
     submit = SubmitField(label='Create account')
+class loginForm(FlaskForm):
+     email_address = StringField(label='Email:', validators=[Email(),DataRequired()])
+     password = PasswordField(label='Password', validators=[Length(min=8),DataRequired()])
+     submit = SubmitField(label='Login')
+    
     
 class ApplicationForm(FlaskForm):
     first_name = StringField(label="First Name", validators=[DataRequired()])
@@ -31,15 +36,15 @@ class ApplicationForm(FlaskForm):
     secondary_school = StringField(label= "Secondary School Attended", validators=[DataRequired()])
     tertiary_school = StringField(label= "Tertiary institution attended", validators=[DataRequired()])
     highest_qualification = SelectField(label="Highest Qualification", choices=[('1','SSCE'),('2','Diploma'),('3','Degree/HND'),('4','Second Degree'),('5','Third Degree')])
-    passport_photo = FileField('Passport Photograph', validators=[FileRequired(), FileAllowed(['jpg','jpeg'], 'jpeg/jpg files only!')])
-    birth_cert = FileField('Image',validators=[FileRequired(), FileAllowed(['jpg','jpeg'], 'jpeg/jpg files only!')])
-    tertiary_cert = FileField('Higher Institution Cert. PDF!', validators=[FileRequired(), FileAllowed(['pdf'], 'PDF files only!')])
-    other_cert = FileField('Other Certificates PDF!', validators=[FileAllowed(['pdf'], 'PDF files only!')])
+    passport_photo = FileField('Passport Photograph', validators=[FileRequired(), FileAllowed(['jpg','jpeg','pdf'], 'pdf/jpeg/jpg files only!')])
+    birth_cert = FileField('Image',validators=[FileRequired(), FileAllowed(['jpg','jpeg','pdf'], 'pdf/jpeg/jpg files only!')])
+    tertiary_cert = FileField('Higher Institution Cert. PDF!', validators=[FileRequired(), FileAllowed(['pdf'], 'pdf/jpeg/jpg files only!')])
+    other_cert = FileField('Other Certificates PDF!', validators=[FileAllowed(['jpg','jpeg','pdf'], 'pdf/jpeg/jpg files only!')])
     position_applying_for = SelectField(label="Position applying for", choices=[('1','Accountant I'),('2','Customer Service'),('3','Driver'),('4','Human Resource'),('5','Product Manager'),('6','Software Enginner (Backend) '),('7','Executive Assitant II')])
-    professional_cert = FileField('Professional Certificates PDF!', validators=[FileAllowed(['pdf'], 'PDF files only!')])
-    nysc_cert = FileField('NYSC Discharge/Exeption Cert. PDF', validators=[FileRequired(), FileAllowed(['pdf'], 'PDF files only!')])
-    ssce_photo = FileField('SSCE Result JPG/JPEG', validators=[FileRequired(), FileAllowed(['jpg','jpeg'], 'jpeg/jpg files only!')])
-    school_cert_photo = FileField('Primary School Cert. JPG/JPEG', validators=[FileRequired(), FileAllowed(['jpg','jpeg'], 'jpeg/jpg files only!')])
+    professional_cert = FileField('Professional Certificates PDF!', validators=[FileAllowed(['jpg','jpeg','pdf'], 'pdf/jpeg/jpg files only!')])
+    nysc_cert = FileField('NYSC Discharge/Exeption Cert. PDF', validators=[FileRequired(), FileAllowed(['jpg','jpeg','pdf'], 'pdf/jpeg/jpg files only!')])
+    ssce_photo = FileField('SSCE Result JPG/JPEG', validators=[FileRequired(), FileAllowed(['jpg','jpeg','pdf'], 'pdf/jpeg/jpg files only!')])
+    school_cert_photo = FileField('Primary School Cert. JPG/JPEG', validators=[FileRequired(), FileAllowed(['jpg','jpeg','pdf'], 'pdf/jpeg/jpg files only!')])
     state_of_residence = SelectField(label="State of Residence", choices=[('1','ABUJA FCT'),
                                                 ('2','ABIA'),
                                                 ('3','ADAMAWA'),

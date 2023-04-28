@@ -1,6 +1,8 @@
 from flask import Flask
 #pip install flask-sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask_bcrypt import Bcrypt
 
 
 app=Flask(__name__)
@@ -8,5 +10,7 @@ app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portal.db'
 #then use the application object as a parameter to create an object of class SQLAlchemy
 db=SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+login_manager = LoginManager(app)
 app.config["SECRET_KEY"]='bdfbcdc502722bc56058y1d0'
-from portal.models import User
+from portal.models import User, Application
