@@ -1,16 +1,19 @@
 from portal import db, login_manager, bcrypt
 from flask_login import UserMixin
+from datetime import datetime
 
 
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 class User(db.Model,UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     email_address = db.Column(db.String(length=58),unique=True, nullable=False)
     password_hash= db.Column(db.String(length=60), nullable=False) 
     application = db.relationship('Application', backref='applicant', lazy=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     
     @property
@@ -58,5 +61,8 @@ class Application(db.Model):
     professional_cert = db.Column(db.LargeBinary(),nullable=False)
     other_cert = db.Column(db.LargeBinary(),nullable=False)
     owner = db.Column(db.Integer(),db.ForeignKey('user.email_address'))
-    
+class test(db.Model):
+    id = db.Column(db.Integer(), primary_key =True)
+    name = db.Column(db.String(60), nullable = False, unique = True)
+    data = db.Column(db.LargeBinary(),nullable = False)
     

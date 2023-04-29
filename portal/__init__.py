@@ -7,10 +7,10 @@ from flask_bcrypt import Bcrypt
 
 app=Flask(__name__)
 #now, lets set a URL for the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portal.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databank.db'
 #then use the application object as a parameter to create an object of class SQLAlchemy
 db=SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 app.config["SECRET_KEY"]='bdfbcdc502722bc56058y1d0'
-from portal.models import User, Application
+from portal.models import User, Application, test

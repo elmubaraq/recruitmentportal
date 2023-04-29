@@ -1,7 +1,7 @@
-from flask import Flask,redirect,url_for,render_template,request,flash, get_flashed_messages
-from portal import app,db,User, Application
+from flask import Flask,redirect, url_for, render_template, request, flash, get_flashed_messages
+from portal import app, db, User, Application
 from portal.forms import RegistrationForm, ApplicationForm, loginForm
-from flask_login import login_manager,logout_user,login_user, login_required, current_user
+from flask_login import login_manager, logout_user, login_user, login_required, current_user
 
 @app.route('/',methods=['GET','POST'])
 def home():
@@ -14,9 +14,11 @@ def home():
 def register_page():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user =User( email_address=form.email_address.data, password_hash = form.password1.data)
-        db.session.add(user)
-        db.session.commit()
+        user =User(email_address=form.email_address.data, password = form.password1.data)
+        with app.app_context():
+            db.create_all()
+            db.session.add(user)
+            db.session.commit()
     if form.errors !={}:
         for err_msg in form.errors.values():
             flash(f'There was an error creating a user: {err_msg}',category='danger')
