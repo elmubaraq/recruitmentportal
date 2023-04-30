@@ -10,7 +10,7 @@
 {% block body %}
 
     <div class="container">
-        <form class="row g-3 needs-validation" novalidate>
+        <form method="POST" enctype="multipart/form-data", class="row g-3 needs-validation", novalidate>
             <h3>Bio-data</h3>
             {{ form.hidden_tag() }}
             <div class="col-md-4 position-relative">
@@ -57,11 +57,11 @@
                 {{form.lga.label()}}
                 {{form.lga(class="form-control", placeholder="Local Govt Area")}}
             </div>
-            <div class="col-md-3 position-relative">
+            <div class="col-md-2 position-relative">
                 {{form.nin.label()}}
                 {{form.nin(class="form-control", placeholder="National Identity Number")}}
             </div>
-            <div class="col-md-3 position-relative">
+            <div class="col-md-2 position-relative">
                 {{form.phone.label()}}
                 {{form.phone(class="form-control", placeholder="Phone Number")}}
             </div>
@@ -69,6 +69,11 @@
                 {{form.passport_photo.label()}}
                 {{form.passport_photo(class="form-control")}}
             </div>
+            <div class="col-md-2 position-relative">
+                {{form.birth_cert.label()}}
+                {{form.birth_cert(class="form-control")}}
+            </div>
+            
             <h3>Academic Qualification</h3>
             <div class="col-md-3 position-relative">
                 {{form.primary_school.label()}}

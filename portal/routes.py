@@ -26,17 +26,47 @@ def register_page():
 @app.route('/apply', methods=['GET','POST'])
 def apply_page():
     form = ApplicationForm()
-    if form.validate_on_submit():
-        application_to_create = Application(first_name=form.first_name.data, middle_name=form.middle_name.data, last_name=form.last_name.data,
-                                            home_town=form.home_town.data, permanent_address=form.permanent_address.data,town_of_residence=form.town_of_residence,
-                                            residential_address=form.residential_address.data,state_of_residence=form.state_of_residence, state_of_origin=form.state_of_origin.data,
-                                            lga=form.lga.data, phone=form.phone.data, nin = form.nin.data, gender= form.gender.data, primary_school=form.primary_school.data, secondary_school=form.secondary_school.data,
-                                            tertiary_school=form.tertiary_school.data, highest_qualification=form.highest_qualification.data, position_applying_for=form.position_applying_for.data, passport_photo=form.passport_photo.data,
-                                            birth_cert=form.birth_cert.data,school_cert=form.school_cert_photo.data,ssce_photo=form.ssce_photo.data,
-                                            tertiary_cert=form.tertiary_cert.data,nysc_cert=form.nysc_cert.data,professional_cert=form.professional_cert.data,other_cert=form.other_cert.data)
+    if request.method == "POST" and form.validate():
+    
+        
+        file1 = request.files['passport_photo']
+        file2 = request.files['birth_cert']
+        file3 = request.files['nysc_cert']
+        file4 = request.files['other_cert']
+        file5 = request.files['school_cert_photo']
+        file6 = request.files['ssce_photo']
+        file7 = request.files['tertiary_cert']
+        file8 = request.files['professional_cert'] 
+        file1_filename = file1.filename
+        file2_filename = file2.filename
+        file3_filename = file3.filename
+        file4_filename = file4.filename
+        file5_filename = file5.filename
+        file6_filename = file6.filename
+        file7_filename = file7.filename
+        file8_filename = file8.filename
+        
+        file1.save(app.config['UPLOAD_FOLDER'] + '/' + file1_filename)
+        file2.save(app.config['UPLOAD_FOLDER'] + '/' + file2_filename)
+        file3.save(app.config['UPLOAD_FOLDER'] + '/' + file3_filename)
+        file4.save(app.config['UPLOAD_FOLDER'] + '/' + file4_filename)
+        file5.save(app.config['UPLOAD_FOLDER'] + '/' + file5_filename)
+        file6.save(app.config['UPLOAD_FOLDER'] + '/' + file6_filename)
+        file7.save(app.config['UPLOAD_FOLDER'] + '/' + file7_filename)
+        file8.save(app.config['UPLOAD_FOLDER'] + '/' + file8_filename)
+        application_to_create = Application(first_name =  request.form['first_name'] , middle_name =request.form['middle_name'], last_name=request.form['last_name'],
+                                            home_town=request.form['home_town'], permanent_address=request.form['permanent_address'],town_of_residence=request.form['town_of_residence'],
+                                            residential_address=request.form['residential_address'],state_of_residence=request.form['state_of_residence'], state_of_origin=request.form['state_of_origin'],
+                                            lga=request.form['lga'], phone=request.form['phone'], nin = request.form['nin'], gender= request.form['gender'], primary_school=request.form['primary_school'], secondary_school=request.form['secondary_school'],
+                                            tertiary_school=file7_filename, highest_qualification=request.form['highest_qualification'], position_applying_for=request.form['position_applying_for'], passport_photo=file1_filename,
+                                            birth_cert=file2_filename,school_cert=file5_filename,ssce_photo=file6_filename,
+                                            tertiary_cert=file7_filename,nysc_cert=file3_filename,professional_cert=file8_filename,other_cert=file4_filename)
         db.session.add(application_to_create)
         db.session.commit()
         flash(f'SUCCESSFUL', category='info')
+    if form.errors !={}:
+        for err_msg in form.errors.values():
+            flash(f'There was an error creating a user: {err_msg}',category='danger')
         
     
     return render_template('apply.html', form=form)

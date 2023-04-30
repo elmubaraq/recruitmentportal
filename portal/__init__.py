@@ -13,4 +13,5 @@ db=SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 app.config["SECRET_KEY"]='bdfbcdc502722bc56058y1d0'
+app.config['UPLOAD_FOLDER'] = 'portal/static/uploads'
 from portal.models import User, Application, test
