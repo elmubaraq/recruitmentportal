@@ -60,7 +60,11 @@ class Application(db.Model):
     nysc_cert = db.Column(db.String(120),unique=False, nullable=False)
     professional_cert = db.Column(db.String(120),unique=False, nullable=False)
     other_cert = db.Column(db.String(120),unique=False, nullable=False)
-    owner = db.Column(db.String(80),db.ForeignKey('user.email_address'))
+    email_address = db.Column(db.String(120),unique=True, nullable=False)
+    application_check = db.Column(db.Integer(),db.ForeignKey('user.id'))
+    def __repr__(self):
+        return str(self.application_check)
+        #return repr(self.application_check)
 class test(db.Model):
     id = db.Column(db.Integer(), primary_key =True)
     name = db.Column(db.String(60), nullable = False, unique = True)

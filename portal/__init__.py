@@ -12,6 +12,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///databank.db'
 db=SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login_page'
+login_manager.login_message = 'Please register and login before you continue with you application!'
+login_manager.login_message_category = 'info'
 app.config["SECRET_KEY"]='bdfbcdc502722bc56058y1d0'
 app.config['UPLOAD_FOLDER'] = 'portal/static/uploads'
 from portal.models import User, Application, test
