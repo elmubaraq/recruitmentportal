@@ -15,10 +15,14 @@ def register_page():
     form = RegistrationForm()
     if form.validate_on_submit():
         user =User(email_address=form.email_address.data, password = form.password1.data)
+        
         with app.app_context():
             db.create_all()
             db.session.add(user)
             db.session.commit()
+            user_to_login= User.query.filter_by(email_address=form.email_address.data).first()
+            login_user(user_to_login)
+            return redirect('apply')
     if form.errors !={}:
         for err_msg in form.errors.values():
             flash(f'There was an error creating a user: {err_msg}',category='danger')
