@@ -33,7 +33,11 @@
                 {{form.state_of_origin.label()}}
                 {{form.state_of_origin(class="form-select", placeholder="State of Origin")}}
             </div>
-            <div class="col-md-6 position-relative">
+            <div class="col-md-2 position-relative">
+                {{form.dob.label()}}
+                {{form.dob(class="form-control")}}
+            </div>
+            <div class="col-md-4 position-relative">
                 {{form.permanent_address.label()}}
                 {{form.permanent_address(class="form-control", placeholder="Permanent Address")}}
             </div>

@@ -59,16 +59,16 @@ def apply_page():
         file7_filename = file7.filename
         file8_filename = file8.filename
         
-        file1.save(app.config['UPLOAD_FOLDER'] + '/' + file1_filename)
-        file2.save(app.config['UPLOAD_FOLDER'] + '/' + file2_filename)
-        file3.save(app.config['UPLOAD_FOLDER'] + '/' + file3_filename)
-        file4.save(app.config['UPLOAD_FOLDER'] + '/' + file4_filename)
-        file5.save(app.config['UPLOAD_FOLDER'] + '/' + file5_filename)
-        file6.save(app.config['UPLOAD_FOLDER'] + '/' + file6_filename)
-        file7.save(app.config['UPLOAD_FOLDER'] + '/' + file7_filename)
-        file8.save(app.config['UPLOAD_FOLDER'] + '/' + file8_filename)
+        file1.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " passport_photo")
+        file2.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " birth_cert")
+        file3.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " nysc_cert")
+        file4.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " other_cert")
+        file5.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " school_cert_photo")
+        file6.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " ssce_photo")
+        file7.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " tertiary_cert")
+        file8.save(app.config['UPLOAD_FOLDER'] + '/' + current_user.email_address + " professional_cert")
         application_to_create = Application(first_name =  request.form['first_name'] , middle_name =request.form['middle_name'], last_name=request.form['last_name'],
-                                            home_town=request.form['home_town'], permanent_address=request.form['permanent_address'],town_of_residence=request.form['town_of_residence'],
+                                            home_town=request.form['home_town'], dob = request.form['dob'], permanent_address=request.form['permanent_address'],town_of_residence=request.form['town_of_residence'],
                                             residential_address=request.form['residential_address'],state_of_residence=request.form['state_of_residence'], state_of_origin=request.form['state_of_origin'],
                                             lga=request.form['lga'], phone=request.form['phone'], nin = request.form['nin'], gender= request.form['gender'], primary_school=request.form['primary_school'], secondary_school=request.form['secondary_school'],
                                             tertiary_school=file7_filename, highest_qualification=request.form['highest_qualification'], position_applying_for=request.form['position_applying_for'], passport_photo=file1_filename,
@@ -77,6 +77,7 @@ def apply_page():
         db.session.add(application_to_create)
         db.session.commit()
         flash(f'SUCCESSFUL', category='info')
+        return render_template('application_slip.html')
     if form.errors !={}:
         for err_msg in form.errors.values():
             flash(f'There was an error creating a user: {err_msg}',category='danger')
