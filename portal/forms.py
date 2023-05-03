@@ -36,6 +36,7 @@ class ApplicationForm(FlaskForm):
     primary_school = StringField(label="Primary School Attended", validators=[DataRequired(message="primary  school attended")])
     secondary_school = StringField(label= "Secondary School Attended", validators=[DataRequired(message="Secondary  School attended")])
     tertiary_school = StringField(label= "Tertiary institution attended", validators=[DataRequired(message="Institution attended")])
+    course_studied = StringField(label= "Course Studied", validators=[DataRequired(message="Course Studied")])
     highest_qualification = SelectField(label="Highest Qualification", validators=[DataRequired(message="highest qualification")],choices=[('1','SSCE'),('2','Diploma'),('3','Degree/HND'),('4','Second Degree'),('5','Third Degree')])
     passport_photo = FileField('Passport Photograph', validators=[ DataRequired(message="passport photo"), FileAllowed([ 'pdf','jpeg','jpg'], 'pdf/jpeg/jpg files only!')])
     birth_cert = FileField('Birth cert',validators=[ DataRequired(message="birth cert"), FileAllowed([ 'pdf','jpeg','jpg'], 'pdf/jpeg/jpg files only!')])

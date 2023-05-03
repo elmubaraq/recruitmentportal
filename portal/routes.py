@@ -2,7 +2,7 @@ from flask import Flask,redirect, url_for, render_template, request, flash, get_
 from portal import app, db, User, Application
 from portal.forms import RegistrationForm, ApplicationForm, loginForm
 from flask_login import login_manager, logout_user, login_user, login_required, current_user
-
+from datetime import datetime
 @app.route('/',methods=['GET','POST'])
 def home():
     if request.method=='POST':
@@ -71,7 +71,7 @@ def apply_page():
                                             home_town=request.form['home_town'], dob = request.form['dob'], permanent_address=request.form['permanent_address'],town_of_residence=request.form['town_of_residence'],
                                             residential_address=request.form['residential_address'],state_of_residence=request.form['state_of_residence'], state_of_origin=request.form['state_of_origin'],
                                             lga=request.form['lga'], phone=request.form['phone'], nin = request.form['nin'], gender= request.form['gender'], primary_school=request.form['primary_school'], secondary_school=request.form['secondary_school'],
-                                            tertiary_school=file7_filename, highest_qualification=request.form['highest_qualification'], position_applying_for=request.form['position_applying_for'], passport_photo=file1_filename,
+                                            tertiary_school=file7_filename, course_studied = request.form['course_studied'],highest_qualification=request.form['highest_qualification'], position_applying_for=request.form['position_applying_for'], passport_photo=file1_filename,
                                             birth_cert=file2_filename,school_cert=file5_filename,ssce_photo=file6_filename,
                                             tertiary_cert=file7_filename,nysc_cert=file3_filename,professional_cert=file8_filename,other_cert=file4_filename, email_address=current_user.email_address,application_check=current_user.id)
         db.session.add(application_to_create)
@@ -91,6 +91,9 @@ def login_page():
         attempted_user = User.query.filter_by(email_address=form.email_address.data).first()
         if attempted_user and  attempted_user.check_password_correlation(attempted_password=form.password.data):
             login_user(attempted_user)
+            user = User.query.get(current_user.id)
+            user.last_login = datetime.utcnow()
+            db.session.commit()
             flash(f'You are successfully logged in as: {attempted_user.email_address}!', category='success')
             return redirect(url_for('apply_page'))
         else:

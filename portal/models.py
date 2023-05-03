@@ -13,7 +13,8 @@ class User(db.Model,UserMixin):
     email_address = db.Column(db.String(length=58),unique=True, nullable=False)
     password_hash= db.Column(db.String(length=60), nullable=False) 
     application = db.relationship('Application', backref='applicant', lazy=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default= datetime.utcnow)
+    last_login = db.Column(db.DateTime, default= datetime.utcnow, unique=False, nullable=True)
     
     
     @property
@@ -51,6 +52,7 @@ class Application(db.Model):
     primary_school = db.Column(db.String(80),unique=False, nullable=False)
     secondary_school = db.Column(db.String(80),unique=False, nullable=False)
     tertiary_school = db.Column(db.String(80),unique=False, nullable=False)
+    course_studied = db.Column(db.String(120),unique=False, nullable=True)
     highest_qualification = db.Column(db.String(80),unique=False, nullable=False)
     position_applying_for = db.Column(db.String(80),unique=False, nullable=False)
     passport_photo = db.Column(db.String(120),unique=False, nullable=False)

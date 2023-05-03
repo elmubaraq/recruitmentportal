@@ -92,14 +92,18 @@
                 {{form.tertiary_school(class="form-control", placeholder="Secondary Institution Attended")}}
             </div>
             <div class="col-md-3 position-relative">
+                {{form.course_studied.label()}}
+                {{form.course_studied(class="form-control", placeholder="Course Studied")}}
+            </div>
+            <div class="col-md-2 position-relative">
                 {{form.highest_qualification.label()}}
                 {{form.highest_qualification(class="form-select", placeholder="Town of Birth")}}
             </div>
-            <div class="col-md-4 position-relative">
+            <div class="col-md-3 position-relative">
                 {{form.school_cert_photo.label()}}
                 {{form.school_cert_photo(class="form-control")}}
             </div>
-            <div class="col-md-4 position-relative">
+            <div class="col-md-3 position-relative">
                 {{form.ssce_photo.label()}}
                 {{form.ssce_photo(class="form-control", placeholder="Secondary School Attended")}}
             </div>
